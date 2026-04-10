@@ -13,4 +13,4 @@ VALUES
 ("Svētki"),
 ("Mūzika"),
 ("Sports");
-// TODO ALL OF TS
+// TODO ALL OF TSs
