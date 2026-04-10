@@ -1,0 +1,16 @@
+CREATE DATABASE QUEZ;
+USE QUEZ;
+
+CREATE TABLE USERS
+
+CREATE TABLE Quizes(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	content VARCHAR(5200) NOT NULL
+);
+
+INSERT INTO categories (category_name)
+VALUES
+("Svētki"),
+("Mūzika"),
+("Sports");
+// TODO ALL OF TS
