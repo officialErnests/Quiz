@@ -16,4 +16,11 @@ class Validator
             && $value >= $min 
             && $value <= $max;
     }
+
+    public function auth($user){
+        if(!isset($user['user_id'])||empty($_SESSION['user_id'])){
+            return 'none';
+        }
+        return $user['role'] === "none" ? "admin" : "user";
+    }
 }
