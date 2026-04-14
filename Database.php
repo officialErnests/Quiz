@@ -3,7 +3,7 @@
 class  Database {
     private $pdo;
     public function __construct($config) {
-        $dsn = "mysql:host=DivineAngel;dbname=QUEZ;charset=utf8mb4";
+        $dsn = "mysql:host=".$config["host"].";dbname=".$config["host"].";charset=utf8mb4";
         $this->pdo = new PDO($dsn);
     }
     public function query($sql, $params) {
