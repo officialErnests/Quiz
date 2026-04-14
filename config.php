@@ -4,7 +4,7 @@ return [
         "host" => "DivineAngel",
         "port" => 3306,
         "user" => "root",
-        "password" => "",
+        "password" => "coolPwd",
         "dbname" => "QUEZ",
         "charset" => "utf8mb4"
     ],
