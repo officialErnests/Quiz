@@ -18,9 +18,9 @@ class Validator
     }
 
     public function auth($user){
-        if(!isset($user['user_id'])||empty($_SESSION['user_id'])){
+        if (!isset($user['user_id']) || empty($user['user_id'])){
             return 'none';
         }
-        return $user['role'] === "none" ? "admin" : "user";
+        return $user['role'] === "admin" ? "admin" : "user";
     }
 }
