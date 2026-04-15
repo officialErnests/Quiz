@@ -37,4 +37,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $pageTitle = "login";
 $customStyles = ["main/style.css"];
 
-require "login.view.php"; 
+require "./views/main/login.view.php"; 
