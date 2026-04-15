@@ -22,11 +22,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $params = ["username" => $_POST["username"]];
         $result = $db->query($sql_query, $params);
 
-        if (password_verify($password, $result["password"])) {
-            $_SESSION["username"] = $username;
-            $_SESSION["role"] = $result["role"];
+        if ($result > 0) {
+            if (password_verify($password, $result["password"])) {
+                $_SESSION["username"] = $username;
+                $_SESSION["role"] = $result["role"];
+            } else {
+                $error.array_push("Wrong password");
+            }
         } else {
-            $error.array_push("Wrong password");
+            $error.array_push("Couldn't find user");
         }
     }
 }
