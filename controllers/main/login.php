@@ -35,4 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+$pageTitle = "login";
+$customStyles = [];
+
 require "login.view.php"; 
