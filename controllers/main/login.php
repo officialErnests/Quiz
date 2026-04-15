@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-require "Database.php";
 require "validator.php";
 
 $error = [];
@@ -38,4 +37,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $pageTitle = "login";
 $customStyles = [];
 
-require "login.view.php"; 
+require "./views/main/login.view.php"; 
