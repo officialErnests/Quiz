@@ -1,22 +1,26 @@
 <?php require "views/components/header.php"; ?>
 <?php require "views/components/navbar.php"; ?>
 
-<form>
-    <input type="text" placeholder="Name"></input>
-    <input type="text" placeholder="Surname"></input>
-    <input type="text" placeholder="Password"></input>
+<?php $customStyles="syle.css" ?>
 
-    <button type="submit" class="login_btn">Login</button>
+ <div class="login_main">
+        <div class="login">
+            <form>
+                <h2>Welcome back!</h2>
 
+                <label>Username</label>
+                <input placeholder="Username..." name="username">
+                <label>Password</label>
+                <input placeholder="Password..." name="password">
 
-    <div>
-        <span class="forgot">Forgot <a href="#">password?</a></span>
-    </div>
+                <a href="#">Forgot password?</a>
 
-</form>
+                <button class="login_btn">Login</button>
 
-
-
+                
+            </form>
+        </div>
+   </div>
 
 
 <?php require "views/components/footer.php"; ?>
