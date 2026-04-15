@@ -4,35 +4,30 @@ session_start();
 require "Database.php";
 require "validator.php";
 
+$error = [];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    if (empty($username) || empty($password)) {
-        $message = "Username and password are required.";
-    } else {
-        $stmt = $conn->prepare("SELECT password FROM login WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $stmt->store_result();
+    if(Validator::string($username, 3, 25)) {
+        $error.array_push("Invalid username");
+    }
+    if(Validator::string($password, 3, 64)) {
+        $error.array_push("Invalid password");
+    }
 
-        if ($stmt->num_rows > 0) {
-            $stmt->bind_result($db_password);
-            $stmt->fetch();
+    if (empty($error)) {
+        $sql_query = "SELECT password, role FROM login WHERE username = :username";
+        $params = ["username" => $_POST["username"]];
+        $result = $db->query($sql_query, $params);
 
-            if (password_verify($password, $db_password)) {
-                $_SESSION['username'] = $username;
-                header("Location:");
-                exit();
-            } else {
-                $message = "Incorrect password.";
-            }
+        if (password_verify($password, $result["password"])) {
+            $_SESSION["username"] = $username;
+            $_SESSION["role"] = $result["role"];
         } else {
-            $message = "Username not found.";
+            $error.array_push("Wrong password");
         }
-
-        $stmt->close();
-        $conn->close();
     }
 }
 

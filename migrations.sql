@@ -1,7 +1,7 @@
 CREATE DATABASE QUEZ;
 USE QUEZ;
 
-CREATE TABLE login(
+CREATE TABLE login (
 	user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`username` VARCHAR(25) NOT NULL,
 	`role`   ENUM('admin', 'user') NOT NULL DEFAULT 'user',
