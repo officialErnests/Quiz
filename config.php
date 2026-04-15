@@ -1,7 +1,7 @@
 <?php
 return [
     "database" => [
-        "host" => "DivineAngel",
+        "host" => "localhost",
         "port" => 3306,
         "user" => "root",
         "password" => "",
