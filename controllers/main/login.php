@@ -1,50 +1,39 @@
 <?php
 session_start();
 
-require "login.view.php";
 require "Database.php";
 require "validator.php";
 
-$error = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $role     = $_POST['role'] ?? '';
-
-    $allowedRoles = ['admin', 'user'];
-
-    if (
-        !Validator::string($username, 3, 25) ||
-        !Validator::string($password, 3, 64) ||
-        !Validator::auth($role, $allowedRoles)
-    ) {
-        $error = "Invalid data";
+    if (empty($username) || empty($password)) {
+        $message = "Username and password are required.";
     } else {
-        $stmt = $pdo->prepare('SELECT * FROM login WHERE username = ? LIMIT 1');
-        $stmt->execute([$username]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $conn->prepare("SELECT password FROM login WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $stmt->store_result();
 
-        if ($user && password_verify($password, $user['password'])) {
-            if ($role !== $user['role']) {
-                $error = "Role does not match!!!!";
+        if ($stmt->num_rows > 0) {
+            $stmt->bind_result($db_password);
+            $stmt->fetch();
+
+            if (password_verify($password, $db_password)) {
+                $_SESSION['username'] = $username;
+                header("Location:");
+                exit();
             } else {
-
-                $_SESSION['user_id']  = $user['user_id'];
-                $_SESSION['username'] = $user['username'];
-                $_SESSION['role']     = $user['role'];
-
-                if ($user['role'] === 'admin') {
-                    header('Location:');
-                } else {
-                    header('Location: ');
-                }
-                exit;
+                $message = "Incorrect password.";
             }
-
         } else {
-            $error = "Wrong username or password!";
+            $message = "Username not found.";
         }
+
+        $stmt->close();
+        $conn->close();
     }
 }
+
+require "login.view.php"; 
