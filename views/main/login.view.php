@@ -1,7 +1,7 @@
 <?php require "views/components/header.php"; ?>
 <?php require "views/components/navbar.php"; ?>
 
-<?php $customStyles="style.css" ?>
+
 
  <div class="login_main">
         <div class="login">
