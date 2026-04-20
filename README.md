@@ -73,3 +73,13 @@ Done:
 2.3.4 show global leaderboard w curent result
 2.3.5 back to quiz button
 2.3.6 retry quiz button
+
+
+# quizes
+
+1. Categories: games, movies, nature, architecture(from different countries like: Eiffel Tower etc.), IT
+1.1 questions: From what (category) is this? Who/ what is on this photo?  etc.
+1.2 4 answer buttons(only 1 is right)
+1.3 timer for each quiz
+1.4 progress section
+1.5 if user answers incorrect it dont count that question
