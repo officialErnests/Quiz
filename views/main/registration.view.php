@@ -3,8 +3,8 @@
 
 
 
- <div class="login_main">
-        <div class="login">
+ <div class="signup_main">
+        <div class="signup">
             <form>
                 <h2>Hello, user!</h2>
 
@@ -16,7 +16,7 @@
                 <input placeholder="Other password..." name="password">
 
 
-                <button class="login_btn">Create account</button>
+                <button class="signup_btn">Create account</button>
 
                 
             </form>

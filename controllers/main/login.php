@@ -35,6 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $pageTitle = "login";
-$customStyles = ["main/style.css"];
+$customStyles = ["main/login.css"];
 
 require "./views/main/login.view.php"; 
