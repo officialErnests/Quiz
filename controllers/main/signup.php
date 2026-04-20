@@ -22,19 +22,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors["password"] = "password not in range of 4 - 25 characters";
     }
     if (empty($errors)) {
-        $sql_query = "SELECT * FROM login WHERE username = :username";
+        $sql_query = "SELECT COUNT(*) FROM login WHERE username = :username";
         $params = ["username" => $_POST["username"]];
-        $query = $db->query($sql_query, $params)->fetch();
-        if(empty($query)) {
+        $query = $db->query($sql_query, $params)->fetchColumn();
+        if($query > 0) {
             //todo DO THIS
             $errors["username"] = "Username taken, please choose another one";
         };
         if (empty($errors)) {
             $sql_query = "INSERT INTO login(username, password) VALUES (:username, :password)";
             $params = ["username" => $_POST["username"],
-                        "password" => $_POST["password"]];
+                        "password" => password_hash($_POST["password"], PASSWORD_DEFAULT)];
             $query_2 = $db->query($sql_query, $params);
-            dd($query_2);
+            $_SESSION["username"] = $_POST["username"];
+            $_SESSION["role"] = $_POST["username"];
+            $_SESSION["user_id"] = $db->lastInsertId();
             header("Location: /");
             exit();
         }

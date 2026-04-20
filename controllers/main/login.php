@@ -9,10 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     if(Validator::string($username, 3, 25)) {
-        $error.array_push("Invalid username");
+        $errors["username"] = "Invalid username";
     }
     if(Validator::string($password, 3, 64)) {
-        $error.array_push("Invalid password");
+        $errors["password"] = "Invalid password";
     }
 
     if (empty($error)) {
