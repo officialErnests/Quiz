@@ -1,5 +1,9 @@
 <?php 
 
+if (isset($_SESSION["user_id"])) {
+    dd($_SESSION["user_id"]);
+}
+
 $errors = [];
 
 require "validator.php";
@@ -18,12 +22,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors["password"] = "password not in range of 4 - 25 characters";
     }
     if (empty($errors)) {
-        $sql_query = "INSERT INTO login(username, password) VALUES (:username, :password)";
-        $params = ["username" => $_POST["username"],
-                    "password" => $_POST["password"]];
-        $query = $db->query($sql_query, $params);
-        header("Location: /");
-        exit();
+        $sql_query = "SELECT * FROM login WHERE username = :username";
+        $params = ["username" => $_POST["username"]];
+        $query = $db->query($sql_query, $params)->fetch();
+        if(empty($query)) {
+            //todo DO THIS
+            $errors["username"] = "Username taken, please choose another one";
+        };
+        if (empty($errors)) {
+            $sql_query = "INSERT INTO login(username, password) VALUES (:username, :password)";
+            $params = ["username" => $_POST["username"],
+                        "password" => $_POST["password"]];
+            $query_2 = $db->query($sql_query, $params);
+            dd($query_2);
+            header("Location: /");
+            exit();
+        }
     }
 }
 
