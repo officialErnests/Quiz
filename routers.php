@@ -3,6 +3,7 @@
 return [
     "/" => "./controllers/main/index.php",
     "/login" => "./controllers/main/login.php",
+    "/signup" => "./controllers/main/signup.php",
 
     "/quiz" => "./controllers/quiz/index.php",
     "/quiz/show" => "./controllers/quiz/index.php",
