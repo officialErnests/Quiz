@@ -1,5 +1,9 @@
 <?php 
 
+if (isset($_SESSION["user_id"])) {
+    dd($_SESSION["user_id"]);
+}
+
 $errors = [];
 
 require "validator.php";
@@ -18,12 +22,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors["password"] = "password not in range of 4 - 25 characters";
     }
     if (empty($errors)) {
-        $sql_query = "INSERT INTO login(username, password) VALUES (:username, :password)";
-        $params = ["username" => $_POST["username"],
-                    "password" => $_POST["password"]];
-        $query = $db->query($sql_query, $params);
-        header("Location: /");
-        exit();
+        $sql_query = "SELECT COUNT(*) FROM login WHERE username = :username";
+        $params = ["username" => $_POST["username"]];
+        $query = $db->query($sql_query, $params)->fetchColumn();
+        if($query > 0) {
+            //todo DO THIS
+            $errors["username"] = "Username taken, please choose another one";
+        };
+        if (empty($errors)) {
+            $sql_query = "INSERT INTO login(username, password) VALUES (:username, :password)";
+            $params = ["username" => $_POST["username"],
+                        "password" => password_hash($_POST["password"], PASSWORD_DEFAULT)];
+            $query_2 = $db->query($sql_query, $params);
+            $_SESSION["username"] = $_POST["username"];
+            $_SESSION["role"] = "user"; // as you can't create admin accounts
+            $_SESSION["user_id"] = $db->lastInsertId();
+            header("Location: /");
+            exit();
+        }
     }
 }
 

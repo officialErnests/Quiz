@@ -13,4 +13,7 @@ class  Database {
 
         return $statement;
     }
+    public function lastInsertId() {
+        return $this->pdo->lastInsertId();
+    }
 }
