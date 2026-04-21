@@ -1,8 +1,6 @@
 <?php 
 
-if (isset($_SESSION["user_id"])) {
-    dd($_SESSION["user_id"]);
-}
+
 
 $errors = [];
 
