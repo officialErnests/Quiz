@@ -3,7 +3,9 @@
 
 <?php
     if (isset($_SESSION["user_id"])) {
-        dd($_SESSION["user_id"]);
+        echo $_SESSION["username"] . "<br>";
+        echo $_SESSION["role"] . "<br>";
+        echo $_SESSION["user_id"];
     }
 ?>
 

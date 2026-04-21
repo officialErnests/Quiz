@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         "password" => password_hash($_POST["password"], PASSWORD_DEFAULT)];
             $query_2 = $db->query($sql_query, $params);
             $_SESSION["username"] = $_POST["username"];
-            $_SESSION["role"] = $_POST["username"];
+            $_SESSION["role"] = "user"; // as you can't create admin accounts
             $_SESSION["user_id"] = $db->lastInsertId();
             header("Location: /");
             exit();
