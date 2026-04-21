@@ -7,3 +7,22 @@ CREATE TABLE login (
 	`role`   ENUM('admin', 'user') NOT NULL DEFAULT 'user',
 	`password` VARCHAR(64) NOT NULL
 );
+
+CREATE TABLE quizes (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`name` VARCHAR(25) NOT NULL UNIQUE,
+	`creator` VARCHAR(25) NOT NULL
+);
+
+CREATE TABLE questions (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`quiz_id` INT NOT NULL,
+	`question` VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE answers (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`question_id` INT NOT NULL,
+	`correct` BOOLEAN DEFAULT 0,
+	`answer` VARCHAR (100) NOT NULL
+);
