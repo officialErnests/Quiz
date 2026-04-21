@@ -4,23 +4,26 @@
 
 
  <div class="login_main">
-        <div class="login">
-            <form>
-                <h2>Welcome back!</h2>
+    <div class="login">
+        <form action="/login" method="POST">
+            <h2>Welcome back!</h2>
 
-                <label>Username</label>
-                <input placeholder="Username..." name="username">
-                <label>Password</label>
-                <input placeholder="Password..." name="password">
+            <label for="username"> Username</label>
+            <input type="text" placeholder="Username" name="username" id="username">
+            <?php if (isset($errors["username"] )) { ?>
+                <p>Err: <?=$errors["username"]?></p>
+            <?php } ?>
 
-                <a href="#">Forgot password?</a>
+            <label for="password"> Password</label>
+            <input type="password" placeholder="Password" name="password" id="password">
+            <?php if (isset($errors["password"] )) { ?>
+                <p>Err: <?=$errors["password"]?></p>
+            <?php } ?>
 
-                <button class="login_btn">Login</button>
-
-                
-            </form>
-        </div>
-   </div>
+            <button class="login_btn">Login</button>      
+        </form>
+    </div>
+</div>
 
 
 <?php require "views/components/footer.php"; ?>
