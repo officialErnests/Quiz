@@ -32,8 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $params = ["username" => $_POST["username"],
                         "password" => password_hash($_POST["password"], PASSWORD_DEFAULT)];
             $query_2 = $db->query($sql_query, $params);
+
+            if (isset($_SESSION["user_id"])) {
+                session_destroy();
+            }
             $_SESSION["username"] = $_POST["username"];
-            $_SESSION["role"] = "user"; // as you can't create admin accounts
+            $_SESSION["role"] = "user"; // as you can't create admin accounts, by default they are user
             $_SESSION["user_id"] = $db->lastInsertId();
             header("Location: /");
             exit();

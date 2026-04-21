@@ -1,34 +1,41 @@
 <?php
 
+
 require "validator.php";
 
-$error = [];
+$errors = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    if(Validator::string($username, 3, 25)) {
-        $errors["username"] = "Invalid username";
+    if(!Validator::string($username, 3, 25)) {
+        $errors["username"] = "Invalid username, it should be from 3 till 25";
     }
-    if(Validator::string($password, 3, 64)) {
-        $errors["password"] = "Invalid password";
+    if(!Validator::string($password, 4, 64)) {
+        $errors["password"] = "Invalid password, it should be from 4 till 64";
     }
-
-    if (empty($error)) {
-        $sql_query = "SELECT password, role FROM login WHERE username = :username";
+    if (empty($errors)) {
+        $sql_query = "SELECT * FROM login WHERE username = :username";
         $params = ["username" => $_POST["username"]];
-        $result = $db->query($sql_query, $params);
+        $result = $db->query($sql_query, $params)->fetchAll();
 
-        if ($result > 0) {
+        if (count($result) > 0) {
+            $result = $result[0];
             if (password_verify($password, $result["password"])) {
-                $_SESSION["username"] = $username;
-                $_SESSION["role"] = $result["role"];
+                if (isset($_SESSION["user_id"])) {
+                    session_destroy();
+                }
+                $_SESSION["username"] = $result["username"];
+                $_SESSION["role"] = $result["role"]; 
+                $_SESSION["user_id"] = $result["id"];
+                header("Location: /");
+                exit();
             } else {
-                $error.array_push("Wrong password");
+                 $errors["password"] = "Wrong password, try again";
             }
         } else {
-            $error.array_push("Couldn't find user");
+            $errors["username"] = "No username found";
         }
     }
 }
