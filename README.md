@@ -83,3 +83,29 @@ Done:
 1.3 timer for each quiz
 1.4 progress section
 1.5 if user answers incorrect it dont count that question
+
+# Questions 
+Games: 
+    1. Who is this? (charachter from game )
+    2. Which game is most popular in 2026?
+    3. Which game needs a lot of hard-drive memory?
+    4. What game category is the most popular?
+    5. What is full name of: PVE, MMO and RPG?
+    6. Who is the most popular charachter in video games?
+    7. What is the difference between indie and AAA games?
+    8. What is the oldest video game ever made?
+    9. Which video game has the best storyline?
+    10. Which game has the largest open world map?
+    11. What is the most expensive video game ever developed?
+    12. Which is the popular survival-horror game?
+    13. What is the difference between indie games and AAA games?
+    14. Which is most popular RPG game in world?
+    15. What type of genre is Diablo III? 
+
+
+Movies:
+    1. How much movies have an Oscar reward?
+    2. Which is the most popular movie on christmas?
+    3. What year was the original Star Wars movie released?
+    4. Which is the most popular horror movie?
+    5. 
