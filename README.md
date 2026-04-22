@@ -31,6 +31,8 @@ Notes:
     }
 ?>
 
+go trough all views and <?= ?> + echo's
+
 
 # Page lists
 0.

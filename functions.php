@@ -14,3 +14,6 @@ function redirectIfNotFound($location = "/")
     header("Location: $location", 302);
     die();
 }
+function NB_thisDir() {
+    return $_SERVER['PHP_SELF'];
+}
