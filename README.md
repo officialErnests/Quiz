@@ -22,6 +22,15 @@ Doing:
 Done:
 - Planing
 
+Notes:
+<?php
+    if (isset($_SESSION["user_id"])) {
+        echo $_SESSION["username"] . "<br>";
+        echo $_SESSION["role"] . "<br>";
+        echo $_SESSION["user_id"];
+    }
+?>
+
 
 # Page lists
 0.
