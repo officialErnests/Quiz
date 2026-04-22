@@ -7,3 +7,40 @@ body{
     background-color: whitesmoke;
 }
 
+.index_logo{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(0, 0, 0);
+    text-align: center; /* ← centers the text */
+    display: block;
+}
+
+.window_main{
+ display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-style: italic;
+    padding-top: 5rem;
+}
+
+.window{
+    background-color: white;
+    padding: 2rem;
+    width: 70%;
+    height: 70px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;              
+    align-items: center;        
+    justify-content: space-between;
+}
+
+
+.window img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* ← makes it a circle */
+    object-fit: cover;  /* ← prevents image distortion */
+}
