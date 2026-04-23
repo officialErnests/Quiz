@@ -5,6 +5,8 @@
 <form method="POST" action="/quiz/create">
     <label for="header">Quez name:</label>
     <input type="text" name="header" id="header" value="<?= $Quez_name?>"/>
+    <label for="Description">Description:</label>
+    <input type="text" name="description" id="description" value="<?= $Quez_description?>"/>
     <hr>
     <?php foreach ($Questions as $id => $question) { ?>
         <h1>Question #<?= $id?></h1>

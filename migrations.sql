@@ -10,8 +10,9 @@ CREATE TABLE login (
 
 CREATE TABLE quizes (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	`name` VARCHAR(25) NOT NULL UNIQUE,
-	`creator_id` VARCHAR(25) NOT NULL
+	`name` VARCHAR(25) NOT NULL,
+	`creator_id` VARCHAR(25) NOT NULL,
+	`description` varchar(255) NOT NULL
 );
 
 CREATE TABLE questions (

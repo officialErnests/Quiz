@@ -3,22 +3,18 @@ if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "admin") {
 
     redirectIfNotAuthorized();
 }
-
-// Source - https://stackoverflow.com/a/2680198
-// Posted by goat, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-04-23, License - CC BY-SA 4.0
 $Quez_name = "";
+$Quez_description = "";
 $Questions = [];
 //TODO add validation
 //TODO add limits to 100 for frontend
 //TODO add strips
 //TODO add so it checks if not empty
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // dd($_POST);
     $Quez_name = $_POST["header"];
+    $Quez_description = $_POST["description"];
     for ($i=0; $i < 100; $i++) { 
         $t_name = "Question-" . $i;
-        // dd($_POST);
         if (isset($_POST[$t_name])) {
             if (isset($_POST['Delete-'.$i])) {
                 continue;
@@ -68,43 +64,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]
         ]);
     } elseif (isset($_POST['submit'])) {
-        $sql_query = "INSERT INTO quizes (name, creator) VALUES (:name, :creator_id)";
+        $sql_query = "INSERT INTO quizes (name, creator_id, description) VALUES (:name, :creator_id, :description)";
         $params = [
             "name" => $Quez_name, 
-            "creator_id" => $_SESSION["user_id"]
+            "creator_id" => $_SESSION["user_id"],
+            "description" => $_POST["description"]
         ];
-        // $post = $db->query($sql_query, $params);
-        var_dump([$sql_query, $params]);
-        // $quiz_id = $db->lastInsertId();
+        $post = $db->query($sql_query, $params);
+        $quiz_id = $db->lastInsertId();
         $quiz_id = 0;
-        $q_sql_query = "INSERT INTO questions (quiz_id, index, question) VALUES ";
-        $q_params = [
-            "quiz_id" => $quiz_id
-        ];
-        $a_sql_query = "INSERT INTO answers (question_id, correct, answer) VALUES ";
+        $a_sql_query = "INSERT INTO answers (question_id, correct, answer) VALUES";
         $a_params = [];
-        $first = true;
         foreach ($Questions as $question_index => $question) {
-            if ($first) {
-                $first = false;
-            } else {
-                $q_sql_query .= ", ";
-            }
-            $q_sql_query .= "(:quiz_id, :index_".$question_index.", :question_".$question_index.")";
-            $q_params["index_".$question_index] = $question_index;
-            $q_params["question_".$question_index] = $question["Question"];
-            $a_params["question_id_".$question_index] = $question_index;
+            $q_sql_query = "INSERT INTO questions (quiz_id, index, question) VALUES (:quiz_id, :index, :question)";
+            $q_params = [
+                "quiz_id" => $quiz_id
+            ];
+            $q_params["index"] = $question_index;
+            $q_params["question"] = $question["Question"];
+            $post2 = $db->query($q_sql_query, $q_params);
+            $question_id = $db->lastInsertId();
+            $first_2 = true;
+            $a_params["question_id_".$question_id] = $question_index;
             foreach ($question["Answers"] as $a_key => $answers) {
-                $a_sql_query .= "(:question_id_".$question_index.", :Q_".$question_index."_correct_".$question_index.", :Q_".$question_index."_answer_".$question_index.")";
-                $q_params["index_".$question_index] = $question_index;
-                $q_params["question_".$question_index] = $question["Question"];
+                if ($first_2) {
+                    $first_2 = false;
+                } else {
+                    $a_sql_query .= ", ";
+                }
+                $a_sql_query .= "(:question_id_".$question_id.", :Q_".$question_id."_correct_".$a_key.", :Q_".$question_id."_answer_".$a_key.")";
+                $a_params["Q_".$question_id."_correct_".$a_key] = $question["Correct"][$a_key];
+                $a_params["Q_".$question_id."_answer_".$a_key] = $answers;
             }
         }
-        var_dump([$q_sql_query, $q_params]);
-        // $post = $db->query($sql_query, $params);
-        // $quiz_id = $db->lastInsertId();
-        // header("Location: /");
-        // exit();
+        $post3 = $db->query($a_sql_query, $a_params);
+        dd([$a_params, $a_sql_query])
+        header("Location: /");
+        exit();
     }
 }
 
