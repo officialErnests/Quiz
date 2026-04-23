@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
             if (isset($_POST['Create-'.$i])) {
-                array_push($t_arr,"Type your question :))");
+                array_push($t_arr,"");
                 array_push($t_arr_correct,false);
             }
             array_push($Questions,
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 true
             ],
             "Answers" => [
-                "Type your question :))"
+                ""
             ]
         ]);
     } elseif (isset($_POST['submit'])) {
@@ -75,8 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $quiz_id = 0;
         $a_sql_query = "INSERT INTO answers (question_id, correct, answer) VALUES";
         $a_params = [];
+        $first_2 = true;
         foreach ($Questions as $question_index => $question) {
-            $q_sql_query = "INSERT INTO questions (quiz_id, index, question) VALUES (:quiz_id, :index, :question)";
+            $q_sql_query = "INSERT INTO questions (quiz_id, `index`, question) VALUES (:quiz_id, :index, :question)";
             $q_params = [
                 "quiz_id" => $quiz_id
             ];
@@ -84,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $q_params["question"] = $question["Question"];
             $post2 = $db->query($q_sql_query, $q_params);
             $question_id = $db->lastInsertId();
-            $first_2 = true;
+            // dd([$q_sql_query, $q_params]);
             $a_params["question_id_".$question_id] = $question_index;
             foreach ($question["Answers"] as $a_key => $answers) {
                 if ($first_2) {
@@ -93,12 +94,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $a_sql_query .= ", ";
                 }
                 $a_sql_query .= "(:question_id_".$question_id.", :Q_".$question_id."_correct_".$a_key.", :Q_".$question_id."_answer_".$a_key.")";
-                $a_params["Q_".$question_id."_correct_".$a_key] = $question["Correct"][$a_key];
+                $a_params["Q_".$question_id."_correct_".$a_key] = $question["Correct"][$a_key] ? 1 : 0;
                 $a_params["Q_".$question_id."_answer_".$a_key] = $answers;
             }
         }
+        // dd([$a_params, $a_sql_query]);
         $post3 = $db->query($a_sql_query, $a_params);
-        dd([$a_params, $a_sql_query])
         header("Location: /");
         exit();
     }

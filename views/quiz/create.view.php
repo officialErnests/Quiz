@@ -12,16 +12,19 @@
         <h1>Question #<?= $id?></h1>
         <label for="Question-<?= $id?>">Question</label>
         <input type="text" name="Question-<?= $id?>" id="Question-<?= $id?>" value="<?= $question["Question"]?>"/>
-        <br>
         <?php foreach ($question["Answers"] as $q_id => $q_answer) {?>
-            
-            <input type="checkbox" id="Q-<?= $id?>-Correct-<?= $q_id?>" name="Q-<?= $id?>-Correct-<?= $q_id?>" value="on" <?= $question["Correct"][$q_id] ? "checked" : "" ?>>
-            <input type="text" id="Q-<?= $id?>-Answer-<?= $q_id?>" name="Q-<?= $id?>-Answer-<?= $q_id?>" value="<?= $q_answer?>">
-            <input type="submit" name="Q-<?= $id?>-Delete-<?= $q_id?>" value="Delete!">
             <br>
+            <input type="checkbox" id="Q-<?= $id?>-Correct-<?= $q_id?>" name="Q-<?= $id?>-Correct-<?= $q_id?>" value="on" <?= $question["Correct"][$q_id] ? "checked" : "" ?>>
+            <input type="text" id="Q-<?= $id?>-Answer-<?= $q_id?>" name="Q-<?= $id?>-Answer-<?= $q_id?>" value="<?= $q_answer?>" placeholder="Type your question :))">
+            <input type="submit" name="Create-<?= $id?>" value="Create!" hidden>
+            <input type="submit" name="Q-<?= $id?>-Delete-<?= $q_id?>" value="Delete!">
         <?php } ?>
-        <input type="submit" name="Create-<?= $id?>" value="Create!">
-        <input type="submit" name="Delete-<?= $id?>" value="Delete!">
+        <br>
+        <span style="display: flex; height: 30px">
+            <input type="submit" name="Create-<?= $id?>" value="Create!">
+            <p>--------------------------------------------</p>
+            <input type="submit" name="Delete-<?= $id?>" value="Delete!">
+        </span>
         <hr>
     <?php }?>
     <input type="submit" name="add" value="Add question">

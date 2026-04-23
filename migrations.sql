@@ -28,3 +28,11 @@ CREATE TABLE answers (
 	`correct` BOOLEAN DEFAULT 0,
 	`answer` VARCHAR (100) NOT NULL
 );
+
+TRUNCATE quizes;
+TRUNCATE questions;
+TRUNCATE answers;
+
+SELECT * FROM quizes;
+SELECT * FROM questions;
+SELECT * FROM answers;
