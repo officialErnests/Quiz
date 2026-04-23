@@ -14,6 +14,14 @@ function redirectIfNotFound($location = "/")
     header("Location: $location", 302);
     die();
 }
+
+function redirectIfNotAuthorized($location = "/") 
+{
+    http_response_code(403);
+    header("Location: $location", 302);
+    die();
+}
+
 function NB_thisDir() {
     return $_SERVER['PHP_SELF'];
 }
