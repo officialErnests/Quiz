@@ -24,6 +24,7 @@
     <div class="window_main">
         <div class="window">
             <h2>Play a quizes about popular themes</h2>
+             <img src="assets/Meme.png" alt="smart" width="90px" height="90px">
         </div>
     </div>
 
