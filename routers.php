@@ -7,8 +7,8 @@ return [
     "/logout" => "./controllers/main/logout.php",
 
     "/quiz" => "./controllers/quiz/index.php",
-    "/quiz/show" => "./controllers/quiz/index.php",
-    "/quiz/question" => "./controllers/quiz/index.php",
-    "/quiz/result" => "./controllers/quiz/index.php",
+    "/quiz/show" => "./controllers/quiz/show.php",
+    "/quiz/question" => "./controllers/quiz/question.php",
+    "/quiz/result" => "./controllers/quiz/result.php",
     "/quiz/create" => "./controllers/quiz/create.php",
 ];
