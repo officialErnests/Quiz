@@ -41,7 +41,15 @@ body{
 .window img {
     width: 60px;
     height: 60px;
-    border-radius: 50%; /* ← makes it a circle */
-    object-fit: cover;  /* ← prevents image distortion */
+    border-radius: 50%; 
+    object-fit: cover; 
 }
 
+@media (max-width: 425px) {
+    .window {
+        width: 100%;
+        height: 30vh;
+    }
+
+    .
+}

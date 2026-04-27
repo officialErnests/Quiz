@@ -31,6 +31,7 @@
      <div class="window_main">
         <div class="window">
             <h2>Try all what you can do!</h2>
+            <img src="assets/Mario.jpg" alt="smart" width="90px" height="90px">
         </div>
     </div>
 
