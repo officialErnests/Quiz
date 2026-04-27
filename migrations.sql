@@ -8,20 +8,27 @@ CREATE TABLE login (
 	`password` VARCHAR(64) NOT NULL
 );
 
+DROP TABLE IF EXISTS quizes;
 CREATE TABLE quizes (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`name` VARCHAR(25) NOT NULL,
 	`creator_id` VARCHAR(25) NOT NULL,
-	`description` varchar(255) NOT NULL
+	`description` varchar(255) NOT NULL,
 );
 
+DROP TABLE IF EXISTS questions;
 CREATE TABLE questions (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`quiz_id` INT NOT NULL,
 	`index` INT NOT NULL,
-	`question` VARCHAR(255) NOT NULL
+	`question` VARCHAR(255) NOT NULL,
+	CONSTRAINT `c_quiz`
+		FOREIGN KEY (quiz_id) REFERENCES quizes (id)
+		ON DELETE CASCADE
+		ON UPDATE RESTRICT
 );
 
+DROP TABLE IF EXISTS answers;
 CREATE TABLE answers (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`question_id` INT NOT NULL,
