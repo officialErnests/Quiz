@@ -3,8 +3,6 @@
 
 <?php if (isset($_SESSION["user_id"])) {?>
     <?php if ($_SESSION["role"] == "user" || $_SESSION["role"] == "admin") { ?>
-        <h1>Hello and welcome back, <?= htmlspecialchars($_SESSION["username"])?></h1>
-        <h1>QUEZIS</h1>
         <?php require "./controllers/quiz/index.php" ?>
 
     <?php } else { ?>

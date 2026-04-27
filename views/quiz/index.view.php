@@ -1,35 +1,12 @@
-<<<<<<< HEAD
-    <!-- make this grid -->
-    <form>
-        <input name='search_query' value='<?= $_GET["search_query"] ?? ""?>' class="quiz_search">
-        <button class="search_btn">Search</button>
-    </form>
-    <!-- Add editing buttons and delete for admins -->
-    <div class="quiz">
-            <span class= "quiz_start">
-                <div>
-                    <button class="quiz_btn_games"> 
-                        <h2>Games<h2>
-
-                        <div>
-                            <a href="#"> Play </a>
-                        </div>         
-                    </button>
-
-                    
-                <div>
-            </span>
-    </div>
-=======
 <!-- make this grid -->
-<form>
-    <input name='search_query' value='<?= $_GET["search_query"] ?? ""?>'>
-    <button>Meklēt</button>
+<form class="quiz">
+    <input name='search_query' value='<?= $_GET["search_query"] ?? ""?>' class="quiz_search">
+    <button class="search_btn">Meklēt</button>
 </form>
 <!-- Add editing buttons and delete for admins -->
-<div class="quiz" style="padding-left:100px;">
+<div class="quiz" style="padding-left:100px;" class="quiz_btn_games">
     <?php foreach ($quezes as $index => $quiz) { ?>
-        <a href="/quiz/show?id=<?= $quiz["id"]?>">
+        <a href="/quiz/show?id=<?= $quiz["id"]?>" class= "quiz_start">
             <hr>
             <h1><?= $quiz["name"]?></h1>
             <p><?= $quiz["description"]?></p>
@@ -37,4 +14,9 @@
         </a>
     <?php }?>
 </div>
->>>>>>> origin/Creating-main-layout
+
+<div class="chose_window">
+    <div class="games_quiz">1</div>
+    
+</div>
+

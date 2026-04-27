@@ -97,7 +97,7 @@ go trough all views and <?= ?> + echo's
 
 # Questions 
 Games: 
-    1. Who is this? (charachter from game )
+    1. Who is this? (charachter from game )   
     2. Which game is most popular in 2026?
     3. Which game needs a lot of hard-drive memory?
     4. What game category is the most popular?
