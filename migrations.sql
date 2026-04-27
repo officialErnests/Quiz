@@ -10,13 +10,15 @@ CREATE TABLE login (
 
 CREATE TABLE quizes (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	`name` VARCHAR(25) NOT NULL UNIQUE,
-	`creator` VARCHAR(25) NOT NULL
+	`name` VARCHAR(25) NOT NULL,
+	`creator_id` VARCHAR(25) NOT NULL,
+	`description` varchar(255) NOT NULL
 );
 
 CREATE TABLE questions (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`quiz_id` INT NOT NULL,
+	`index` INT NOT NULL,
 	`question` VARCHAR(255) NOT NULL
 );
 
@@ -26,3 +28,11 @@ CREATE TABLE answers (
 	`correct` BOOLEAN DEFAULT 0,
 	`answer` VARCHAR (100) NOT NULL
 );
+
+TRUNCATE quizes;
+TRUNCATE questions;
+TRUNCATE answers;
+
+SELECT * FROM quizes;
+SELECT * FROM questions;
+SELECT * FROM answers;

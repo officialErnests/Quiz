@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["username"] = $result["username"];
                 $_SESSION["role"] = $result["role"]; 
                 $_SESSION["user_id"] = $result["id"];
+                session_regenerate_id(true);
                 header("Location: /");
                 exit();
             } else {
