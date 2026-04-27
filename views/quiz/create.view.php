@@ -9,7 +9,7 @@
     <input type="text" name="description" id="description" value="<?= $Quez_description?>"/>
     <hr>
     <?php foreach ($Questions as $id => $question) { ?>
-        <h1>Question #<?= $id?></h1>
+        <h1>Question #<?= $id + 1?></h1>
         <label for="Question-<?= $id?>">Question</label>
         <input type="text" name="Question-<?= $id?>" id="Question-<?= $id?>" value="<?= $question["Question"]?>"/>
         <?php foreach ($question["Answers"] as $q_id => $q_answer) {?>
