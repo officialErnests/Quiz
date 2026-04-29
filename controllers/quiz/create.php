@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
         $post = $db->query($sql_query, $params);
         $quiz_id = $db->lastInsertId();
-        $a_sql_query = "INSERT INTO answers (quiz_id, question_id, correct, answer) VALUES";
+        $a_sql_query = "INSERT INTO answers (question_id, correct, answer) VALUES";
         $a_params = [];
         $first_2 = true;
         foreach ($Questions as $question_index => $question) {
@@ -80,20 +80,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $q_params = [
                 "quiz_id" => $quiz_id
             ];
-            $a_params["quiz_id"] = $quiz_id;
             $q_params["index"] = $question_index;
             $q_params["question"] = $question["Question"];
             $post2 = $db->query($q_sql_query, $q_params);
             $question_id = $db->lastInsertId();
             // dd([$q_sql_query, $q_params]);
-            $a_params["question_id_".$question_id] = $question_index;
+            $a_params["question_id_".$question_id] = $question_id;
             foreach ($question["Answers"] as $a_key => $answers) {
                 if ($first_2) {
                     $first_2 = false;
                 } else {
                     $a_sql_query .= ", ";
                 }
-                $a_sql_query .= "(:quiz_id, :question_id_".$question_id.", :Q_".$question_id."_correct_".$a_key.", :Q_".$question_id."_answer_".$a_key.")";
+                $a_sql_query .= "(:question_id_".$question_id.", :Q_".$question_id."_correct_".$a_key.", :Q_".$question_id."_answer_".$a_key.")";
                 $a_params["Q_".$question_id."_correct_".$a_key] = $question["Correct"][$a_key] ? 1 : 0;
                 $a_params["Q_".$question_id."_answer_".$a_key] = $answers;
             }
