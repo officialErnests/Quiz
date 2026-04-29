@@ -6,24 +6,20 @@ if (!isset($_GET["id"]) || trim($_GET["id"]) == "" || !Validator::number($_GET["
     redirectIfNotFound();
 }
 
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     require "./controllers/comments/create.php";
-//     if (isset($_POST["comment_edit_submit"])) {
-//         require "./controllers/comments/edit.php";
-//     }
-// }
+$sql_query = "SELECT q.name, q.description, b.username, COUNT(a.id) as count FROM quizes q
+    LEFT JOIN questions a
+    ON a.quiz_id = q.id
+    LEFT JOIN login b
+    ON b.id = q.creator_id
+    WHERE q.id = :id";
 
-$sql_query = "SELECT posts.*, categories.category_name FROM posts 
-    LEFT JOIN categories
-    ON posts.category_id = categories.id 
-    WHERE posts.id = :id";
 $params = ["id" => $_GET["id"]];
 $post = $db->query($sql_query, $params)->fetch();
+$post["id"] = $_GET["id"];
 
 if(!$post)
 {
     redirectIfNotFound();
 }
-require "views/posts/show.view.php";
 
 require "./views/quiz/show.view.php";

@@ -1,5 +1,8 @@
 <?php
+if (!isset($_SESSION["user_id"]) || ($_SESSION["role"] != "admin" && $_SESSION["role"] != "user")) {
 
+    redirectIfNotAuthorized();
+}
 $sql_query = "SELECT q.id, q.name, q.description, l.username as creator_username FROM quizes q JOIN login l ON l.id = q.creator_id";
 $params = [];
 $is_category = false;

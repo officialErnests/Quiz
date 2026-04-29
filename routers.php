@@ -11,4 +11,6 @@ return [
     "/quiz/question" => "./controllers/quiz/question.php",
     "/quiz/result" => "./controllers/quiz/result.php",
     "/quiz/create" => "./controllers/quiz/create.php",
+    "/quiz/edit" => "./controllers/quiz/edit.php",
+    "/quiz/delete" => "./controllers/quiz/delete.php",
 ];

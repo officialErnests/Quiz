@@ -72,7 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
         $post = $db->query($sql_query, $params);
         $quiz_id = $db->lastInsertId();
-        $quiz_id = 0;
         $a_sql_query = "INSERT INTO answers (question_id, correct, answer) VALUES";
         $a_params = [];
         $first_2 = true;
