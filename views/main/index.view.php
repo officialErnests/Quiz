@@ -3,8 +3,6 @@
 <!-- TODO implement so you can continue last quiz $_SESSION["quiz"] -->
 <?php if (isset($_SESSION["user_id"])) {?>
     <?php if ($_SESSION["role"] == "user" || $_SESSION["role"] == "admin") { ?>
-        <h1>Hello and welcome back, <?= htmlspecialchars($_SESSION["username"])?></h1>
-        <h1>QUEZIS</h1>
         <?php require "./controllers/quiz/index.php" ?>
 
     <?php } else { ?>
@@ -31,6 +29,7 @@
      <div class="window_main">
         <div class="window">
             <h2>Try all what you can do!</h2>
+            <img src="assets/Mario.jpg" alt="smart" width="90px" height="90px">
         </div>
     </div>
 

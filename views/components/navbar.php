@@ -2,7 +2,8 @@
     <nav class="navbar">
         
         <div>
-            <a href="/">Home</a>
+            <i class="fa-solid fa-house"></i>
+            <a href="/" class="">Home</a>
         </div>
 
         <div class="logo">

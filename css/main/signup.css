@@ -81,3 +81,12 @@ body{
     margin-top: 10px;
     font-weight: bold;
 }
+
+
+
+@media (max-width: 425px) {
+   .fa-house{
+        display: inline;  /* show icon */
+        font-size: 1.5rem;
+   }
+}
