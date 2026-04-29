@@ -1,6 +1,7 @@
 <?php require "views/components/header.php"; ?>
 <?php require "views/components/navbar.php"; ?>
 <!-- TODO sanitize output -->
+ <p id="tracker"></p>
 <span style="display:span;">
     <button onClick="backward()" id="backward" style="display:none;">Backward</button>
     <button onClick="foward()" id="foward">Foward</button>
@@ -8,6 +9,7 @@
 <?php $povLazy = []?>
 <form action="/quiz" method="post">
     <div id="finnish" style="display:none;">
+        <hr>
     <input type="submit" value="Finnish and submit?">
     <?php foreach ($post as $key => $value) { ?>
         <?php
