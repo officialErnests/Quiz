@@ -1,14 +1,22 @@
 <?php require "views/components/header.php"; ?>
 <?php require "views/components/navbar.php"; ?>
 <!-- TODO sanitize output -->
+<span style="display:span;">
+    <button onClick="backward()" id="backward" style="display:none;">Backward</button>
+    <button onClick="foward()" id="foward">Foward</button>
+</span>
 <?php $povLazy = []?>
 <form action="/quiz" method="post">
-    <div id="finnish">
+    <div id="finnish" style="display:none;">
     <input type="submit" value="Finnish and submit?">
     <?php foreach ($post as $key => $value) { ?>
-        <?php if (!in_array($value["index"], $povLazy)){ ?>
+        <?php
+        if (!isset($value["index"])) {
+            continue;
+        }
+        if (!in_array($value["index"], $povLazy)){ ?>
         </div>
-        <div id="q-<?= $value["index"] + 1?>">
+        <div id="q-<?= $value["index"] + 1?>" style="display:none;">
         <h1><?= $value["index"] + 1 . " - " . $value["question"]?></h1>
         <?php array_push($povLazy, $value["index"]);}?>
         <span style="display:flex;">

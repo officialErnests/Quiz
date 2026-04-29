@@ -23,4 +23,8 @@ if(!$post)
     redirectIfNotFound();
 }
 
+$pageTitle = "Quez-tions";
+$customStyles = [];
+$customScripts = ["quiz/question.js"];
+
 require "./views/quiz/question.view.php";
