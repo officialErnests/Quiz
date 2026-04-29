@@ -34,6 +34,7 @@ ALTER TABLE questions ADD CONSTRAINT fk_quizes
 
 CREATE TABLE answers (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	-- `quiz_id` INT NOT NULL,
 	`question_id` INT NOT NULL,
 	`correct` BOOLEAN DEFAULT 0,
 	`answer` VARCHAR (100) NOT NULL
@@ -43,3 +44,13 @@ ALTER TABLE answers ADD CONSTRAINT fk_questions
       FOREIGN KEY (question_id) REFERENCES questions (id)
       ON DELETE CASCADE
       ON UPDATE RESTRICT;
+
+-- SELECT * FROM quizes;
+-- SELECT * FROM questions;
+-- SELECT * FROM answers;
+
+-- INSERT INTO answers(quiz_id, question_id, correct, answer) VALUES (0)
+
+-- TRUNCATE answers;
+-- TRUNCATE questions;
+-- TRUNCATE quizes;
