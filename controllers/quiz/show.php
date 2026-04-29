@@ -12,7 +12,6 @@ $sql_query = "SELECT q.name, q.description, b.username, COUNT(a.id) as count FRO
     LEFT JOIN login b
     ON b.id = q.creator_id
     WHERE q.id = :id";
-
 $params = ["id" => $_GET["id"]];
 $post = $db->query($sql_query, $params)->fetch();
 $post["id"] = $_GET["id"];
