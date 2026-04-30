@@ -106,10 +106,10 @@ Games:
     7. What is the difference between indie and AAA games? (1.Graphics Only X; 2. Indie-low budget AAA-high budget games V; 3. Only story 4. I dont know)
     8. What is the oldest video game ever made? (1. Donkey Kong X; 2. Tetris X; 3. Tennis for Two V; 4. Pac-Man X)
     9. Which video game has the best storyline? (1. The Last of Us V; 2. GTA 5 X; 3. RDR 2 X; 4. ULTRAKILL X)
-    10. Which game has the largest open world map?
-    11. What is the most expensive video game ever developed?
-    12. Which is the popular survival-horror game?
-    13. What is the difference between PVP and PVE games?
+    10. Which game has the largest open world map? (1. Flight simulator X; 2. League of Legends X; 3. Minecraft X; 4. No man's sky V;)
+    11. What is the most expensive video game ever developed? (1. GTA 6 V; 2. Dota 2 X; 3. Wartales X; 4. Subnautica X)
+    12. Which is the popular survival-horror game?  (1. Outlast X; 2. Resident Evil V; 3. Subnautica X; 4. Baldi's Basics X;)
+    13. What is the difference between PVP and PVE games? (1. IDK ; 2. Fight with everyone X; 3. PVP-fight with players PVE-fight with enviroment V; X; 4. No difference X;)
     14. Which is most popular RPG game in world?
     15. What type of genre is Diablo III? 
 
@@ -123,7 +123,7 @@ Movies:
     6. Which genre is the The Lord of the kings?
     7. Who is the most popular actor in 2026?
     8. Who played a Kevin in Home Alone?
-    9. In The Matrix, does Neo take the blue pill or the red pill?
+    9. In The Matrix does Neo take the blue pill or the red pill?
     10.Which role for Jonny Depp is most popular?
     11.In which movie is charachter named Walter White?
     12. What is the most recognizable phrase from The Lord of the Rings?
