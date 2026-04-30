@@ -5,7 +5,7 @@ return [
         "port" => 3306,
         "user" => "root",
         "password" => "",
-        "dbname" => "blog",
+        "dbname" => "QUEZ",
         "charset" => "utf8mb4"
     ],
     "email" => [

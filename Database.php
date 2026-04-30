@@ -3,8 +3,8 @@
 class  Database {
     private $pdo;
     public function __construct($config) {
-        $dsn = "mysql:host=DivineAngel;dbname=QUEZ;charset=utf8mb4";
-        $this->pdo = new PDO($dsn);
+        $dsn = "mysql:host=".$config["host"].";dbname=".$config["dbname"].";charset=utf8mb4";
+        $this->pdo = new PDO($dsn, $config["user"], $config["password"]);
     }
     public function query($sql, $params) {
 
@@ -12,5 +12,8 @@ class  Database {
         $statement->execute($params);
 
         return $statement;
+    }
+    public function lastInsertId() {
+        return $this->pdo->lastInsertId();
     }
 }

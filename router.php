@@ -8,6 +8,6 @@ if (array_key_exists($uri, $routes))
 } else 
 {
     http_response_code(404);
-    echo '<p>Atvainojiet, lapa netika atrasta!</p>';
+    echo '<p>404, page not found</p>';
     die();
 }
