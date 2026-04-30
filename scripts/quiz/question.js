@@ -51,6 +51,17 @@ function render_progress() {
     ptg_tracker.innerText = "[" + "#".repeat(t_value) + "+".repeat(PROGRESS_LENGTH - t_value) + "] " + Math.min(visible, max_questions) + "/" + max_questions;
     
 }
+function shuffle(max_index) {
+    for (let index = 1; index <= max_index; index++) {
+        let t_element = document.getElementById("q-"+index);
+        let t_elements = t_element.getElementsByTagName("span");
+        console.log(t_elements);
+        for (let x = 0; x < t_elements.length; x += 1) { 
+            t_element.appendChild(t_elements[Math.floor(Math.random() * t_elements.length)]);
+        }
+    }
+}
 
 let max_questions = get_questions();
+shuffle(max_questions);
 render(1,1)
