@@ -110,12 +110,12 @@ Games:
     11. What is the most expensive video game ever developed? (1. GTA 6 V; 2. Dota 2 X; 3. Wartales X; 4. Subnautica X)
     12. Which is the popular survival-horror game?  (1. Outlast X; 2. Resident Evil V; 3. Subnautica X; 4. Baldi's Basics X;)
     13. What is the difference between PVP and PVE games? (1. IDK ; 2. Fight with everyone X; 3. PVP-fight with players PVE-fight with enviroment V; X; 4. No difference X;)
-    14. Which is most popular RPG game in world?
-    15. What type of genre is Diablo III? 
+    14. Which is most popular RPG game in world? (1. WItcher 3 X; 2. Diablo X; 3. Hollow Knight X; 4. Pokemon V;)
+    15. What type of genre is Diablo III?  (1. ARPG V; 2. MMO RPG X; 3. Strategy X; 4. Sandbox X;)
 
 
 Movies:
-    1. How much movies have an Oscar reward?
+    1. How much movies have an Oscar reward? (1. 1 X; 2. 2300 V; 3. 50000 X;  )
     2. Which is the most popular movie on christmas?
     3. What year was the original Star Wars movie released?
     4. Which is the most popular horror movie?
