@@ -2,7 +2,7 @@
 <?php require "views/components/navbar.php"; ?>
 <h1>Create new QUEZ!</h1>
 
-<form method="POST" action="/quiz/create">
+<form method="POST" action="/quiz/create#Question-<?= count($Questions) - 2?>">
     <label for="header">Quez name:</label>
     <input type="text" name="header" id="header" value="<?= $Quez_name?>"/>
     <label for="Description">Description:</label>
