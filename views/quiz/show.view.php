@@ -10,8 +10,8 @@
 
 <?php if ($_SESSION["role"] == "admin") {?>
 <hr>
-<a href="/quiz/edit">edit</a>
-<a href="/quiz/delete">delete</a>
+<!-- <a href="/quiz/edit">edit</a>
+<a href="/quiz/delete">delete</a> -->
 <?php }?>
 
 <?php require "views/components/footer.php"; ?>

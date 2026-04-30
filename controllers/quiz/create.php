@@ -1,4 +1,5 @@
 <?php
+require "validator.php";
 if (!isset($_SESSION["user_id"]) || $_SESSION["role"] != "admin") {
 
     redirectIfNotAuthorized();
@@ -11,6 +12,16 @@ $Questions = [];
 //TODO add strips
 //TODO add so it checks if not empty
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!Validator::string($_POST["header"], max: 25))
+    {
+        $errors["content"] = "Incorrect header, must be between 1 and 25";
+    }
+    if (!Validator::string($_POST["description"], max: 255))
+    {
+        $errors["content"] = "Incorrect description, must be between 1 and 255";
+    }
+
+    //* Generates questions again
     $Quez_name = $_POST["header"];
     $Quez_description = $_POST["description"];
     for ($i=0; $i < 100; $i++) { 
@@ -27,6 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if (isset($_POST["Q-".$i.'-Delete-'.$n])) {
                         continue;
                     }
+                    if (!Validator::string($_POST[$t_check], max: 100))
+                    {
+                        $errors["content"] = "Incorrect question ".($i + 1)." answer " .($n + 1) .", must be between 1 and 100 charecters";
+                    }
                     array_push(
                         $t_arr,
                         $_POST[$t_check]
@@ -35,12 +50,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $t_arr_correct, isset($_POST["Q-".$i.'-Correct-'.$n])
                     );
                 } else {
+                    if ($n == 0) {
+                        $errors["content"] = "Question ".($i + 1)." has no answers";
+                    }
                     break;
                 }
             }
             if (isset($_POST['Create-'.$i])) {
                 array_push($t_arr,"");
                 array_push($t_arr_correct,false);
+            }
+            if (!Validator::string($_POST[$t_name], max: 255))
+            {
+                $errors["content"] = "Incorrect question".($i + 1).", must be between 1 and 255 charecters";
             }
             array_push($Questions,
             [
@@ -49,6 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 "Answers" => $t_arr
             ]);
         } else {
+            if ($i == 0) {
+                $errors["content"] = "Quiz has no questions";
+            }
             break;
         }
     }
@@ -63,44 +88,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ""
             ]
         ]);
-    } elseif (isset($_POST['submit'])) {
-        $sql_query = "INSERT INTO quizes (name, creator_id, description) VALUES (:name, :creator_id, :description)";
-        $params = [
-            "name" => $Quez_name, 
-            "creator_id" => $_SESSION["user_id"],
-            "description" => $_POST["description"]
-        ];
-        $post = $db->query($sql_query, $params);
-        $quiz_id = $db->lastInsertId();
-        $a_sql_query = "INSERT INTO answers (question_id, correct, answer) VALUES";
-        $a_params = [];
-        $first_2 = true;
-        foreach ($Questions as $question_index => $question) {
-            $q_sql_query = "INSERT INTO questions (quiz_id, `index`, question) VALUES (:quiz_id, :index, :question)";
-            $q_params = [
-                "quiz_id" => $quiz_id
+    }
+    if (empty($errors)) 
+    {
+        if (!isset($_POST['add']) && isset($_POST['submit'])) {
+            $sql_query = "INSERT INTO quizes (name, creator_id, description) VALUES (:name, :creator_id, :description)";
+            $params = [
+                "name" => $Quez_name, 
+                "creator_id" => $_SESSION["user_id"],
+                "description" => $_POST["description"]
             ];
-            $q_params["index"] = $question_index;
-            $q_params["question"] = $question["Question"];
-            $post2 = $db->query($q_sql_query, $q_params);
-            $question_id = $db->lastInsertId();
-            // dd([$q_sql_query, $q_params]);
-            $a_params["question_id_".$question_id] = $question_id;
-            foreach ($question["Answers"] as $a_key => $answers) {
-                if ($first_2) {
-                    $first_2 = false;
-                } else {
-                    $a_sql_query .= ", ";
+            $post = $db->query($sql_query, $params);
+            $quiz_id = $db->lastInsertId();
+            $a_sql_query = "INSERT INTO answers (question_id, correct, answer) VALUES";
+            $a_params = [];
+            $first_2 = true;
+            foreach ($Questions as $question_index => $question) {
+                $q_sql_query = "INSERT INTO questions (quiz_id, `index`, question) VALUES (:quiz_id, :index, :question)";
+                $q_params = [
+                    "quiz_id" => $quiz_id
+                ];
+                $q_params["index"] = $question_index;
+                $q_params["question"] = $question["Question"];
+                $post2 = $db->query($q_sql_query, $q_params);
+                $question_id = $db->lastInsertId();
+                // dd([$q_sql_query, $q_params]);
+                $a_params["question_id_".$question_id] = $question_id;
+                foreach ($question["Answers"] as $a_key => $answers) {
+                    if ($first_2) {
+                        $first_2 = false;
+                    } else {
+                        $a_sql_query .= ", ";
+                    }
+                    $a_sql_query .= "(:question_id_".$question_id.", :Q_".$question_id."_correct_".$a_key.", :Q_".$question_id."_answer_".$a_key.")";
+                    $a_params["Q_".$question_id."_correct_".$a_key] = $question["Correct"][$a_key] ? 1 : 0;
+                    $a_params["Q_".$question_id."_answer_".$a_key] = $answers;
                 }
-                $a_sql_query .= "(:question_id_".$question_id.", :Q_".$question_id."_correct_".$a_key.", :Q_".$question_id."_answer_".$a_key.")";
-                $a_params["Q_".$question_id."_correct_".$a_key] = $question["Correct"][$a_key] ? 1 : 0;
-                $a_params["Q_".$question_id."_answer_".$a_key] = $answers;
             }
+            // dd([$a_params, $a_sql_query]);
+            $post3 = $db->query($a_sql_query, $a_params);
+            header("Location: /");
+            exit();
         }
-        // dd([$a_params, $a_sql_query]);
-        $post3 = $db->query($a_sql_query, $a_params);
-        header("Location: /");
-        exit();
     }
 }
 

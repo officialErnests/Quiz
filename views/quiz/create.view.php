@@ -30,7 +30,7 @@
     <input type="submit" name="add" value="Add question">
     <hr>
     <?php if (isset($errors)) {?>
-    <p>Err: <?= $errors["content"] ?? "nezināma";?></p>
+    <p>Pointer -> <?= $errors["content"] ?? "nezināma";?></p>
     <?php }?>
     <input type="submit" name="submit" value="Create!">
 </form>
