@@ -7,9 +7,9 @@
     <button onClick="foward()" id="foward">Foward</button>
 </span>
 <?php $povLazy = []?>
-<form action="/quiz" method="post">
+<form action="/quiz/result?id=<?=$post["id"]?>" method="post">
     <div id="finnish" style="display:none;">
-        <hr>
+    <hr>
     <input type="submit" value="Finnish and submit?">
     <?php foreach ($post as $key => $value) { ?>
         <?php
@@ -23,7 +23,7 @@
         <?php array_push($povLazy, $value["index"]);}?>
         <span style="display:flex;">
             <?php
-                $t_name = "a-".$value["id"]
+                $t_name = "a-".$value["answer_id"]
             ?>
             <input type="checkbox" id="<?=$t_name?>" name="<?=$t_name?>" value="checked">
             <p><?= $value["answer"]?></p>

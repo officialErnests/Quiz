@@ -45,7 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$pageTitle = "signup";
+$pageTitle = "Quez-signup";
 $customStyles = ["main/signup.css"];
+$customScripts = [];
 
 require "./views/main/signup.view.php";

@@ -11,5 +11,8 @@ if(isset($_GET["search_query"]) && trim($_GET["search_query"]) != "") {
     $params["search"] = "%" . $_GET["search_query"] . "%";
 }
 $quezes = $db->query($sql_query, $params)->fetchAll(PDO::FETCH_ASSOC);
-// dd($quezes);
+// \/ None of this since it is loaded trought main/index.php
+// $pageTitle = "Quez-creation";
+// $customStyles = [];
+// $customScripts = [];
 require "./views/quiz/index.view.php";

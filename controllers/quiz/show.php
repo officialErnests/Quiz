@@ -21,4 +21,8 @@ if(!$post)
     redirectIfNotFound();
 }
 
+$pageTitle = "Quez-preperation";
+$customStyles = [];
+$customScripts = [];
+
 require "./views/quiz/show.view.php";

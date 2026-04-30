@@ -104,4 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+$pageTitle = "Quez-creation";
+$customStyles = [];
+$customScripts = [];
+
 require "./views/quiz/create.view.php";

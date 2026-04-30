@@ -41,7 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$pageTitle = "login";
+$pageTitle = "Quez-login";
 $customStyles = ["main/login.css"];
+$customScripts = [];
 
 require "./views/main/login.view.php"; 

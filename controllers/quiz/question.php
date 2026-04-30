@@ -10,7 +10,7 @@ if (!isset($_GET["id"]) || trim($_GET["id"]) == "" || !Validator::number($_GET["
     redirectIfNotFound();
 }
 
-$sql_query = "SELECT q.index, q.question, a.answer, a.id FROM questions q
+$sql_query = "SELECT q.index, q.question, a.answer, a.id as answer_id FROM questions q
             LEFT JOIN answers a
             ON a.question_id = q.id
             WHERE q.quiz_id = :id";
