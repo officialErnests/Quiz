@@ -72,7 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
         $post = $db->query($sql_query, $params);
         $quiz_id = $db->lastInsertId();
-        $quiz_id = 0;
         $a_sql_query = "INSERT INTO answers (question_id, correct, answer) VALUES";
         $a_params = [];
         $first_2 = true;
@@ -86,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $post2 = $db->query($q_sql_query, $q_params);
             $question_id = $db->lastInsertId();
             // dd([$q_sql_query, $q_params]);
-            $a_params["question_id_".$question_id] = $question_index;
+            $a_params["question_id_".$question_id] = $question_id;
             foreach ($question["Answers"] as $a_key => $answers) {
                 if ($first_2) {
                     $first_2 = false;
@@ -104,5 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 }
+
+$pageTitle = "Quez-creation";
+$customStyles = [];
+$customScripts = [];
 
 require "./views/quiz/create.view.php";

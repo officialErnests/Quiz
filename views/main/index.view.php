@@ -1,6 +1,6 @@
 <?php require "views/components/header.php"; ?>
 <?php require "views/components/navbar.php"; ?>
-
+<!-- TODO implement so you can continue last quiz $_SESSION["quiz"] -->
 <?php if (isset($_SESSION["user_id"])) {?>
     <?php if ($_SESSION["role"] == "user" || $_SESSION["role"] == "admin") { ?>
         <?php require "./controllers/quiz/index.php" ?>

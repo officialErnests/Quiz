@@ -1,6 +1,8 @@
+DROP DATABASE IF 
 CREATE DATABASE QUEZ;
 USE QUEZ;
 
+DROP TABLE IF EXISTS login;
 CREATE TABLE login (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`username` VARCHAR(25) NOT NULL UNIQUE,
@@ -8,38 +10,47 @@ CREATE TABLE login (
 	`password` VARCHAR(64) NOT NULL
 );
 
+DROP TABLE IF EXISTS answers;
+DROP TABLE IF EXISTS questions;
 DROP TABLE IF EXISTS quizes;
 CREATE TABLE quizes (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`name` VARCHAR(25) NOT NULL,
 	`creator_id` VARCHAR(25) NOT NULL,
-	`description` varchar(255) NOT NULL,
+	`description` VARCHAR(255) NOT NULL
 );
 
-DROP TABLE IF EXISTS questions;
 CREATE TABLE questions (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`quiz_id` INT NOT NULL,
 	`index` INT NOT NULL,
-	`question` VARCHAR(255) NOT NULL,
-	CONSTRAINT `c_quiz`
-		FOREIGN KEY (quiz_id) REFERENCES quizes (id)
-		ON DELETE CASCADE
-		ON UPDATE RESTRICT
+	`question` VARCHAR(255) NOT NULL
 );
+ALTER TABLE questions DROP FOREIGN KEY IF EXISTS fk_quizes;
+ALTER TABLE questions ADD CONSTRAINT fk_quizes
+      FOREIGN KEY (quiz_id) REFERENCES quizes (id)
+      ON DELETE CASCADE
+      ON UPDATE RESTRICT;
 
-DROP TABLE IF EXISTS answers;
 CREATE TABLE answers (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	-- `quiz_id` INT NOT NULL,
 	`question_id` INT NOT NULL,
 	`correct` BOOLEAN DEFAULT 0,
 	`answer` VARCHAR (100) NOT NULL
 );
+ALTER TABLE answers DROP FOREIGN KEY IF EXISTS fk_questions;
+ALTER TABLE answers ADD CONSTRAINT fk_questions
+      FOREIGN KEY (question_id) REFERENCES questions (id)
+      ON DELETE CASCADE
+      ON UPDATE RESTRICT;
 
-TRUNCATE quizes;
-TRUNCATE questions;
-TRUNCATE answers;
+-- SELECT * FROM quizes;
+-- SELECT * FROM questions;
+-- SELECT * FROM answers;
 
-SELECT * FROM quizes;
-SELECT * FROM questions;
-SELECT * FROM answers;
+-- INSERT INTO answers(quiz_id, question_id, correct, answer) VALUES (0)
+
+-- TRUNCATE answers;
+-- TRUNCATE questions;
+-- TRUNCATE quizes;
