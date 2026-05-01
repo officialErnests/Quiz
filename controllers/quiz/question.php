@@ -18,6 +18,14 @@ $params = ["id" => $_GET["id"]];
 $post = $db->query($sql_query, $params)->fetchAll();
 $post["id"] = $_GET["id"];
 
+$sql_query = "SELECT q.index, q.question, a.answer, a.id as answer_id FROM questions q
+            LEFT JOIN answers a
+            ON a.question_id = q.id
+            WHERE q.quiz_id = :id";
+$params = ["id" => $_GET["id"]];
+$post = $db->query($sql_query, $params)->fetchAll();
+$post["id"] = $_GET["id"];
+
 if(!$post)
 {
     redirectIfNotFound();
