@@ -2,9 +2,9 @@
 <?php require "views/components/navbar.php"; ?>
 
 <a href="/">Back</a>
-<h1><?=$post["name"]?> [<?=$post["count"]?> questions]</h1>
-<p><?=$post["description"]?></p>
-<p>by: <?=$post["username"]?></p>
+<h1><?=htmlspecialchars($post["name"])?> [<?=$post["count"]?> questions]</h1>
+<p><?=htmlspecialchars($post["description"])?></p>
+<p>by: <?=htmlspecialchars($post["username"])?></p>
 
 <a href="/quiz/question?id=<?= $post["id"]?>">TAKE QUIZ</a>
 

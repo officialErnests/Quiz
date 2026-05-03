@@ -32,7 +32,8 @@ Notes:
 ?>
 
 go trough all views and <?= ?> + echo's
-
+TODO
+Add page titles to all
 
 # Page lists
 0.

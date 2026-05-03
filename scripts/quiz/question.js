@@ -46,10 +46,10 @@ function get_questions() {
         }
     }
 }
+//TODO fix ts not loading
 function render_progress() {
     let t_value = Math.floor((Math.max(Math.min(visible, max_questions), 1) / max_questions) * PROGRESS_LENGTH);
     ptg_tracker.innerText = "[" + "#".repeat(t_value) + "+".repeat(PROGRESS_LENGTH - t_value) + "] " + Math.min(visible, max_questions) + "/" + max_questions;
-    
 }
 function shuffle(max_index) {
     for (let index = 1; index <= max_index; index++) {
@@ -65,3 +65,7 @@ function shuffle(max_index) {
 let max_questions = get_questions();
 shuffle(max_questions);
 render(1,1)
+
+window.onbeforeunload = function() {
+  return "Data will be lost if you leave the page, are you sure?";
+};
