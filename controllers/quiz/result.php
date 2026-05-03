@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $total_result = 0;
     $total_max_result = 0;
     foreach ($post as $key => $value) {
-        // dd($value);
         if (isset($result[$value["question_id"]])) {
             if ($value["correct"]) {
                 $max_result[$value["question_id"]] += 1;
@@ -60,7 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $total_result += $result[$key];
         $total_max_result += $max_result[$key];
     }
-    // dd([$result, $max_result]);
+    $sql_query = "INSERT INTO results (`quiz_id`, `user_id`, `result`, `max_result`) VALUES (:quiz_id, :user_id, :result, :max_result)";
+    $params = [
+        "quiz_id" => $_GET["id"], 
+        "user_id" => $_SESSION["user_id"],
+        "result" => $total_result,
+        "max_result" => $total_max_result
+    ];
+    $post = $db->query($sql_query, $params);
 }
 
 require "./views/quiz/result.view.php";

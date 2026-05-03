@@ -9,7 +9,9 @@ if (!isset($_GET["id"]) || trim($_GET["id"]) == "" || !Validator::number($_GET["
 {
     redirectIfNotFound();
 }
-
+if (parse_url($_SERVER['HTTP_REFERER'])["path"] != "/quiz/show") {
+    redirectIfBadRequest("/quiz/show?id=".$_GET["id"]);
+}
 $sql_query = "SELECT q.index, q.question, a.answer, a.id as answer_id FROM questions q
             LEFT JOIN answers a
             ON a.question_id = q.id

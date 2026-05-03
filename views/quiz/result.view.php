@@ -10,4 +10,6 @@ $index += 1;?>
 <p>Total <?=$total_result;?>/<?=$total_max_result;?> ~<?=round($total_result / $total_max_result * 100, 2);?>%</p>
 <a href="/quiz/show?id=<?= $_GET["id"]?>">Back</a>
 
+<?php require "/views/quiz/leaderboard.view.php";?>
+
 <?php require "views/components/footer.php"; ?>

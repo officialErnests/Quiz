@@ -45,15 +45,27 @@ ALTER TABLE answers ADD CONSTRAINT fk_questions
       ON DELETE CASCADE
       ON UPDATE RESTRICT;
 
--- SELECT * FROM quizes;
--- SELECT * FROM questions;
--- SELECT * FROM answers;
 
--- INSERT INTO answers(quiz_id, question_id, correct, answer) VALUES (0)
+DROP TABLE IF EXISTS results;
+CREATE TABLE results ( 
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`quiz_id` INT NOT NULL,
+	`user_id` INT NOT NULL,
+	`result` INT NOT NULL,
+	`max_result` INT NOT NULL
+);
+ALTER TABLE results DROP FOREIGN KEY IF EXISTS fk_quiz_id;
+ALTER TABLE results ADD CONSTRAINT fk_quiz_id
+      FOREIGN KEY (quiz_id) REFERENCES quizes (id)
+      ON DELETE CASCADE
+      ON UPDATE RESTRICT;
 
--- TRUNCATE answers;
--- TRUNCATE questions;
--- TRUNCATE quizes;
+ALTER TABLE results DROP FOREIGN KEY IF EXISTS fk_user_id;
+ALTER TABLE results ADD CONSTRAINT fk_user_id
+      FOREIGN KEY (user_id) REFERENCES login (id)
+      ON DELETE CASCADE
+      ON UPDATE RESTRICT;
+
 INSERT INTO `quizes` (`id`, `name`, `creator_id`, `description`) VALUES
 	(1, 'Games', '1', 'Here you can try your knowledge about games and than share them '),
 	(2, 'Nature ', '1', 'Try your knowledge about nature!'),
