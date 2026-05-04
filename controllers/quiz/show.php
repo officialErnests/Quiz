@@ -25,4 +25,6 @@ $pageTitle = "Quez-preperation";
 $customStyles = [];
 $customScripts = [];
 
+require "./controllers/quiz/leaderboard.php";
+
 require "./views/quiz/show.view.php";

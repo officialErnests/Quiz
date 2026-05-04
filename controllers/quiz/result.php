@@ -69,4 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $post = $db->query($sql_query, $params);
 }
 
+require "./controllers/quiz/leaderboard.php";
+
 require "./views/quiz/result.view.php";

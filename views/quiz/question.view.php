@@ -2,10 +2,6 @@
 <?php require "views/components/navbar.php"; ?>
 
 <p id="tracker"></p>
-<span style="display:span;">
-    <button onClick="backward()" id="backward" style="display:none;">Backward</button>
-    <button onClick="foward()" id="foward">Foward</button>
-</span>
 <?php $povLazy = []?>
 <form action="/quiz/result?id=<?=htmlspecialchars($post["id"])?>" method="post">
     <div id="finnish" style="display:none;">
@@ -20,6 +16,19 @@
         </div>
         <div id="q-<?= htmlspecialchars($value["index"]) + 1?>" style="display:none;">
         <h1><?= htmlspecialchars($value["index"]) + 1 . " - " . $value["question"]?></h1>
+        <h2><?php 
+        $t_out = false;
+        foreach ($post2 as $key2 => $value2) {
+            if ($value2["q_id"] == $value["q_id"]) {
+                echo "Correct answers " . $value2["count"];
+                $t_out = true;
+                break;
+            }
+        }
+        if (!$t_out) {
+                echo "Read question [no answers necessary]";
+        }
+        ?></h2>
         <?php array_push($povLazy, $value["index"]);}?>
         <span style="display:flex;">
             <?php
@@ -31,5 +40,9 @@
     <?php }?>
     </div>
 </form>
+<span style="display:span;">
+    <button onClick="backward()" id="backward" style="display:none;">Backward</button>
+    <button onClick="foward()" id="foward">Foward</button>
+</span>
 
 <?php require "views/components/footer.php"; ?>

@@ -5,6 +5,7 @@
 <h1><?=htmlspecialchars($post["name"])?> [<?=$post["count"]?> questions]</h1>
 <p><?=htmlspecialchars($post["description"])?></p>
 <p>by: <?=htmlspecialchars($post["username"])?></p>
+<?php  require "views/quiz/leaderboard.view.php"; ?>
 
 <a href="/quiz/question?id=<?= $post["id"]?>">TAKE QUIZ</a>
 
