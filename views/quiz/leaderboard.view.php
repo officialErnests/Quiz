@@ -1,4 +1,5 @@
 <div>
+<h1>Leaderboard</h1>
 <?php
 $t_val = 0;
 foreach ($leaderboard_post as $key => $value) {

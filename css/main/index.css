@@ -3,10 +3,6 @@
     padding: 0px;
 }
 
-body{
-    background-color: whitesmoke;
-}
-
 .index_logo{
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: rgb(0, 0, 0);
@@ -45,9 +41,24 @@ body{
     object-fit: cover; 
 }
 
+
+
 @media (max-width: 425px) {
     .window {
         width: 80%;
         height: 20vh;
     }
+}
+.admin {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.admin-s {
+    padding: 10px;
+    border: 5px solid black;
+    background: linear-gradient(#88dddd, #88aaaa);
+    width: fit-content;
+    border-radius: 10px;
 }
