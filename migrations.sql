@@ -1,4 +1,3 @@
-DROP DATABASE IF 
 CREATE DATABASE QUEZ;
 USE QUEZ;
 
@@ -153,7 +152,7 @@ INSERT INTO `answers` (`id`, `question_id`, `correct`, `answer`) VALUES
 	(17, 5, 1, 'Player vs Enviroment, massively multiplayer online, role-playing'),
 	(18, 5, 0, 'I dont know'),
 	(19, 5, 0, 'Player vs entities, Massive Morph Orphan, Rookie Playground'),
-	(20, 5, 0, 'I\'m not playing a video games'),
+	(20, 5, 0, "I'm not playing a video games"),
 	(21, 6, 0, 'Steve'),
 	(22, 6, 0, 'Milky Gunsaw'),
 	(23, 6, 1, 'Mario'),
@@ -172,14 +171,14 @@ INSERT INTO `answers` (`id`, `question_id`, `correct`, `answer`) VALUES
 	(36, 9, 0, 'ULTRAKILL'),
 	(37, 10, 0, 'League of Legends'),
 	(38, 10, 0, 'Minecraft'),
-	(39, 10, 1, 'No man\'s sky'),
+	(39, 10, 1, "No man\'s sky"),
 	(40, 10, 0, 'Microsoft Flight Simulator'),
 	(41, 11, 1, 'GTA 6'),
 	(42, 11, 0, 'Dota 2 '),
 	(43, 11, 0, 'Wartales'),
 	(44, 11, 0, 'Subnautica'),
 	(45, 12, 0, 'Outlast'),
-	(46, 12, 0, 'Baldi\'s Basics'),
+	(46, 12, 0, "Baldi\'s Basics"),
 	(47, 12, 0, 'Amnesia'),
 	(48, 12, 1, 'Resident Evil'),
 	(49, 13, 0, 'IDK '),
@@ -320,7 +319,7 @@ INSERT INTO `answers` (`id`, `question_id`, `correct`, `answer`) VALUES
 	(184, 45, 1, 'SECURE AND NOT SECURE'),
 	(185, 45, 0, 'Nothing '),
 	(186, 45, 1, ' HTTP uses port number 80 for communication'),
-	(187, 45, 0, 'They both are strange guys');
+	(187, 45, 0, 'They both are strange guys'),
 	(189, 46, 1, '2300'),
 	(190, 46, 0, '5000'),
 	(191, 46, 0, '0'),
@@ -359,7 +358,7 @@ INSERT INTO `answers` (`id`, `question_id`, `correct`, `answer`) VALUES
 	(224, 55, 1, 'Jack Captain Sparrow'),
 	(225, 55, 0, 'Kevin from Home Alone'),
 	(226, 55, 0, 'Donald Trump'),
-	(227, 55, 0, 'Don\'t know'),
+	(227, 55, 0, "Don't know"),
 	(228, 56, 1, 'Breaking Bad'),
 	(229, 56, 0, 'Stranger Things'),
 	(230, 56, 0, 'The Morphine '),
