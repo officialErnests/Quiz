@@ -25,14 +25,15 @@ Done:
 Notes:
 <?php
     if (isset($_SESSION["user_id"])) {
-        echo $_SESSION["username"] . "<br>";
+        echo htmlspecialchars($_SESSION["username"]) . "<br>";
         echo $_SESSION["role"] . "<br>";
         echo $_SESSION["user_id"];
     }
 ?>
 
 go trough all views and <?= ?> + echo's
-
+TODO
+Add page titles to all
 
 # Page lists
 0.
@@ -101,7 +102,7 @@ Games:
     2. Which game is most popular in 2026?  (1.GTA 5 X; 2.World of Warcraft X; 3.Pokemon Pokopia V; 4.Leauge of Legends X)
     3. Which game needs a lot of hard-drive memory? (1.Mario Super Bros X; 2.Minecraft X; 3.GTA 6 X; 4.ARK survival V)
     4. What game category is the most popular? (1.Action V; 2.Horror X; 3.RPG X; 4.MMO X;)
-    5. What is full name of: PVE, MMO and RPG? (1.Player vs Enviroment, massively multiplayer online, role-playing V; 2. I dont know X; 3. Player vs entities, Massive Morph Orphan, Rookie Playground X; 4. I'm not playing a video games) 
+    5. What is full name of: PVE, MMO and RPG? (1.Player vs Enviroment, massively multiplayer online, role-playing V; 2.     X; 3. Player vs entities, Massive Morph Orphan, Rookie Playground X; 4. I'm not playing a video games) 
     6. Who is the most popular charachter in video games? (1. Steve X; 2. Milky X; 3. Mario V; 4.Trevor X;)
     7. What is the difference between indie and AAA games? (1.Graphics Only X; 2. Indie-low budget AAA-high budget games V; 3. Only story 4. I dont know)
     8. What is the oldest video game ever made? (1. Donkey Kong X; 2. Tetris X; 3. Tennis for Two V; 4. Pac-Man X)

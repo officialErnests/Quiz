@@ -46,11 +46,26 @@ function get_questions() {
         }
     }
 }
+//TODO fix ts not loading
 function render_progress() {
     let t_value = Math.floor((Math.max(Math.min(visible, max_questions), 1) / max_questions) * PROGRESS_LENGTH);
     ptg_tracker.innerText = "[" + "#".repeat(t_value) + "+".repeat(PROGRESS_LENGTH - t_value) + "] " + Math.min(visible, max_questions) + "/" + max_questions;
-    
+}
+function shuffle(max_index) {
+    for (let index = 1; index <= max_index; index++) {
+        let t_element = document.getElementById("q-"+index);
+        let t_elements = t_element.getElementsByTagName("span");
+        console.log(t_elements);
+        for (let x = 0; x < t_elements.length; x += 1) { 
+            t_element.appendChild(t_elements[Math.floor(Math.random() * t_elements.length)]);
+        }
+    }
 }
 
 let max_questions = get_questions();
+shuffle(max_questions);
 render(1,1)
+
+window.onbeforeunload = function() {
+  return "Data will be lost if you leave the page, are you sure?";
+};

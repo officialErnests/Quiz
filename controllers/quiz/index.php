@@ -7,7 +7,7 @@ $sql_query = "SELECT q.id, q.name, q.description, l.username as creator_username
 $params = [];
 $is_category = false;
 if(isset($_GET["search_query"]) && trim($_GET["search_query"]) != "") {
-    $sql_query .= " WHERE content LIKE :search" . ($is_category) ? : " AND p";
+    $sql_query .= " WHERE q.name LIKE :search OR q.description LIKE :search";
     $params["search"] = "%" . $_GET["search_query"] . "%";
 }
 $quezes = $db->query($sql_query, $params)->fetchAll(PDO::FETCH_ASSOC);

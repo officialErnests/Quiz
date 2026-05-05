@@ -22,7 +22,9 @@ if(!$post)
 }
 
 $pageTitle = "Quez-preperation";
-$customStyles = [];
+$customStyles = ["quiz/show.css"];
 $customScripts = [];
+
+require "./controllers/quiz/leaderboard.php";
 
 require "./views/quiz/show.view.php";

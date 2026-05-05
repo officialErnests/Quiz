@@ -1,0 +1,7 @@
+.center {
+    background: linear-gradient(#dd88dd, #aa33aa);
+    margin: 10px;
+    padding: 5px;
+    border: #550055 5px solid;
+    border-radius: 10px;
+}

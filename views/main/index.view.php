@@ -1,17 +1,19 @@
 <?php require "views/components/header.php"; ?>
 <?php require "views/components/navbar.php"; ?>
-<!-- TODO implement so you can continue last quiz $_SESSION["quiz"] -->
 <?php if (isset($_SESSION["user_id"])) {?>
     <?php if ($_SESSION["role"] == "user" || $_SESSION["role"] == "admin") { ?>
         <?php require "./controllers/quiz/index.php" ?>
-
     <?php } else { ?>
         <h1>Something went wrong... Please refresh and try again</h1>
         <?php } ?>
     <?php if ($_SESSION["role"] == "admin") { ?>
         <hr>
-        <h1>Task creation goes here for admins</h1>
-        <a href="/quiz/create">create task</a>
+        <div class="admin">
+            <div class="admin-s">
+                <h1>Task creation goes here for admins</h1>
+                <a href="/quiz/create">create task</a>
+            </div>
+        </div>
     <?php }?>
 <?php } else { ?>
     <div class="index_logo">
