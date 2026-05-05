@@ -11,6 +11,7 @@ CREATE TABLE login (
 
 DROP TABLE IF EXISTS answers;
 DROP TABLE IF EXISTS questions;
+DROP TABLE IF EXISTS results;
 DROP TABLE IF EXISTS quizes;
 CREATE TABLE quizes (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -395,8 +396,8 @@ INSERT INTO `answers` (`id`, `question_id`, `correct`, `answer`) VALUES
 	(244, 60, 1, 'Jonh Litgow '),
 	(245, 60, 0, 'IDK'),
 	(246, 60, 0, 'Harry Potter'),
-	(247, 60, 0, 'Me');
-	(248, 61, 1, 'Russia '),
+	(247, 60, 0, 'Me'),
+	(248, 61, 1, 'Russia'),
 	(249, 61, 0, 'America'),
 	(250, 61, 0, 'Congo'),
 	(251, 61, 0, 'Africa'),
