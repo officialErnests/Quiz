@@ -35,7 +35,7 @@ if(!$post || !$post2)
 }
 
 $pageTitle = "Quez-tions";
-$customStyles = [];
+$customStyles = ["quiz/question.css"];
 $customScripts = ["quiz/question.js"];
 
 require "./views/quiz/question.view.php";

@@ -6,3 +6,7 @@ p, h1, a{
     color: rgb(0, 15, 114);
     text-decoration: none;
 }
+input[type=checkbox] {
+    margin-left: 100px;
+    background-color: yellow;
+}
